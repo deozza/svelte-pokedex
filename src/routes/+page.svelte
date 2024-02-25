@@ -1,2 +1,19 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  	import { page } from '$app/stores';
+	import Search from '$lib/Search.svelte';
+
+    const pokemons = $page.data.pokemons;
+</script>
+
+<Search />
+<div class="flex flex-col">
+  {#each pokemons as pokemon}
+    <a href="./{pokemon.name}" class="text-white transition ease-in-out delay-150 hover:text-primary">
+      <div class="flex flex-row flex-grow justify-between items-center card bordered shadow-lg bg-base-200 my-3 p-3">
+        <img src="{pokemon.sprite}" alt="sprite of {pokemon.name}">
+        <span>{pokemon.name}</span>
+      </div>
+    </a>
+  {/each}
+</div>
+    
